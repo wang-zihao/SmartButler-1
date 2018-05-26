@@ -2,6 +2,7 @@ package com.miki.smartbutler.adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,10 +69,10 @@ public class WeChatAdapter extends BaseAdapter {
         }
         data = mList.get(position);
         viewHolder.tv_title.setText(data.getTitle());
+        Log.d("wangzh", data.getTitle());
         viewHolder.tv_source.setText(data.getSource());
         //加载图片
         if (!TextUtils.isEmpty(data.getImgUrl())) {
-            L.d(data.getImgUrl());
             PicassoUtils.loadImageViewSize(context, data.getImgUrl(), 400, 200, viewHolder.iv_img);
         }
         //Picasso.with(context).load(data.getImgUrl()).into(viewHolder.iv_img);

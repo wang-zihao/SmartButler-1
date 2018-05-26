@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,14 +63,9 @@ public class WeChatFragment extends Fragment {
         RxVolley.get(url, new HttpCallback() {
             @Override
             public void onSuccess(String t) {
-                //Toast.makeText(getActivity(), t, Toast.LENGTH_SHORT).show();
-                L.d(t);
                 parsingJson(t);
             }
         });
-
-        WeChatAdapter adapter = new WeChatAdapter(getActivity(), mList);
-        mListView.setAdapter(adapter);
 
         //点击事件
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -105,6 +101,9 @@ public class WeChatFragment extends Fragment {
                 mListTitle.add(title);
                 mListUrl.add(url);
             }
+
+            WeChatAdapter adapter = new WeChatAdapter(getActivity(), mList);
+            mListView.setAdapter(adapter);
         } catch (JSONException e) {
             e.printStackTrace();
         }
